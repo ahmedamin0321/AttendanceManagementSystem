@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Mark Attendance";
+
+}
+<h2>@TempData["message"]</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    <h2>Date: </h2>
+            <input id="attendanceDate" name="attendanceDate" type='date' min='1899-01-01' max='2000-13-13' />
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Mark</th>
+                        <th>Student</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in ViewBag.students)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="markedStudentId[]" value="@student.id" />
+                            </td>
+                            <td>@student.name</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+                <input type="submit" class="btn btn-success" value="Submit" />
+
+
+}
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("attendanceDate").setAttribute("max", today);
+    document.getElementById("attendanceDate").value = today;
+</script>
