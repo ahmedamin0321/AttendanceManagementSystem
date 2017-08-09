@@ -15,7 +15,6 @@ namespace AttendanceManagementSystem.Controllers
             ViewBag.students = students;
             return View();
         }
-        private DateTime datetoday = DateTime.Now;
         [HttpPost]
         public ActionResult Index(int[] markedStudentId, DateTime attendanceDate)
         {
